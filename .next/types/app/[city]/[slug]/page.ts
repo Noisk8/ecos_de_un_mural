@@ -1,4 +1,4 @@
-// File: /home/noisk8/Descargas/graffiti-y-memoria/app/[city]/[slug]/page.tsx
+// File: /home/noisk8/Documentos/Graffiti y Memoria/graffiti_y_memoria/app/[city]/[slug]/page.tsx
 import * as entry from '../../../../../app/[city]/[slug]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

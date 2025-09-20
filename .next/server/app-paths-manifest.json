@@ -1,8 +1,8 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/mapa/page": "app/mapa/page.js",
-  "/escena-3d/page": "app/escena-3d/page.js",
   "/explorar/page": "app/explorar/page.js",
+  "/page": "app/page.js",
+  "/escena-3d/page": "app/escena-3d/page.js",
+  "/mapa/page": "app/mapa/page.js",
   "/[city]/[slug]/page": "app/[city]/[slug]/page.js"
 }
