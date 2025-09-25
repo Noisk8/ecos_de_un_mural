@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "leaflet/dist/leaflet.css";
+
 html, body {
   @apply bg-concrete text-white min-h-screen;
   background-image: theme('backgroundImage.spray');

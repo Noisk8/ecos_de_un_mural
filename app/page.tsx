@@ -41,11 +41,41 @@ export default function HomePage() {
         </div>
       </header>
 
-      <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {graffitis.slice(0, 6).map((g) => (
-          <GraffitiCard key={`${g.city}-${g.slug}`} graffiti={g} />
-        ))}
-      </div>
+      <section
+        className="mt-12 relative min-h-[70vh] lg:min-h-[80vh] rounded-2xl overflow-hidden bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url(/medellin/1.jpg)" }}
+        aria-label="Sección Medellín"
+      >
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative h-full px-4 py-10">
+          <div className="max-w-6xl mx-auto">
+            <h3 className="graffiti-title text-3xl md:text-4xl mb-6 text-white">Medellín</h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {graffitis.filter(g => g.city === 'medellin').slice(0, 2).map((g) => (
+                <GraffitiCard key={`${g.city}-${g.slug}`} graffiti={g} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="mt-10 relative min-h-[70vh] lg:min-h-[80vh] rounded-2xl overflow-hidden bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: "url(/bogota/3.jpg)" }}
+        aria-label="Sección Bogotá"
+      >
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative h-full px-4 py-10">
+          <div className="max-w-6xl mx-auto">
+            <h3 className="graffiti-title text-3xl md:text-4xl mb-6 text-white">Bogotá</h3>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {graffitis.filter(g => g.city === 'bogota').slice(0, 2).map((g) => (
+                <GraffitiCard key={`${g.city}-${g.slug}`} graffiti={g} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </section>
   )
 }
