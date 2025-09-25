@@ -9,7 +9,6 @@ export default function NavBar() {
           <Link href="/mapa" className="text-zinc-300 hover:text-white">Mapa</Link>
           <Link href="/escena-3d" className="text-zinc-300 hover:text-white">3D</Link>
           <Link href="/explorar" className="text-zinc-300 hover:text-white">Explorar</Link>
-          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer" className="text-zinc-500 hidden sm:inline">© OSM</a>
         </div>
       </div>
     </nav>

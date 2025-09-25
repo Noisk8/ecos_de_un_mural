@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/noisk8/Documentos/Graffiti y Memoria/graffiti_y_memoria/app/layout":["static/media/c6f9f4935a94000f-s.p.woff2","static/media/a22b1dc24103c00d-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/home/noisk8/Documentos/graffiti_y_memoria/app/layout\":[\"static/media/c6f9f4935a94000f-s.p.woff2\",\"static/media/a22b1dc24103c00d-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
