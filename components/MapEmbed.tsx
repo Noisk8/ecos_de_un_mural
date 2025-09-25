@@ -7,20 +7,22 @@ const OSM_IFRAME_ALLOW = "geolocation 'none'";
 export default function MapEmbed() {
   return (
     <div className="rounded-xl overflow-hidden border border-white/10">
-      <iframe
-        width="600"
-        height="450"
-        frameBorder={0}
-        scrolling="no"
-        marginHeight={0}
-        marginWidth={0}
-        src={OSM_IFRAME_SRC}
-        title="Mapa OSM"
-        sandbox={OSM_IFRAME_SANDBOX}
-        allow={OSM_IFRAME_ALLOW}
-        loading="lazy"
-        className="w-full max-w-full"
-      />
+      <div className="relative w-full aspect-[16/10] sm:aspect-[16/9]">
+        <iframe
+          width="100%"
+          height="100%"
+          frameBorder={0}
+          scrolling="no"
+          marginHeight={0}
+          marginWidth={0}
+          src={OSM_IFRAME_SRC}
+          title="Mapa OSM"
+          sandbox={OSM_IFRAME_SANDBOX}
+          allow={OSM_IFRAME_ALLOW}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full block"
+        />
+      </div>
     </div>
   );
 }

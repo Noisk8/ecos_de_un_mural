@@ -9,8 +9,21 @@ export default function ScenePage() {
       </header>
       <div className="card p-2 h-[520px] grid place-items-center">
         <div className="text-zinc-300 text-center">
-          <div className="text-6xl">🧱</div>
-          <p className="mt-2">Aquí puedes integrar Three.js más adelante</p>
+          <div className="text-6xl">
+
+          <iframe
+                  src="https://www.spatial.io/s/LAB-GenIA-6525c92312bbd4d87ea2aa75?share=7333998515614615299"
+                 width="1100PX"
+                  height="500px"
+                  
+                
+              
+
+              
+                
+                ></iframe>
+          </div>
+      
         </div>
       </div>
     </section>
