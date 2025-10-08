@@ -43,7 +43,7 @@ export default function HomePage() {
 
       <section
         className="mt-12 relative min-h-[70vh] lg:min-h-[80vh] rounded-2xl overflow-hidden bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: "url(/medellin/1.jpg)" }}
+        style={{ backgroundImage: "url(/medellin/fondoMDE.jpg)" }}
         aria-label="Sección Medellín"
       >
         <div className="absolute inset-0 bg-black/50" />

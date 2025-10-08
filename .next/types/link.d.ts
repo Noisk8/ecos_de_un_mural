@@ -30,10 +30,10 @@ declare namespace __next_route_internal_types__ {
 
   type StaticRoutes = 
     | `/`
-    | `/escena-3d`
-    | `/explorar`
-    | `/mapa`
     | `/api/wikidata/ecosistemas`
+    | `/explorar`
+    | `/escena-3d`
+    | `/mapa`
   type DynamicRoutes<T extends string = string> = 
     | `/${SafeSlug<T>}/${SafeSlug<T>}`
 

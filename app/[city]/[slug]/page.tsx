@@ -1,8 +1,38 @@
-import { allParams, findGraffiti } from '@/data/graffitis'
+import fs from 'fs'
+import path from 'path'
+import Link from 'next/link'
 import MediaGallery from '@/components/MediaGallery'
 import AudioPlayer from '@/components/AudioPlayer'
 import MapEmbed from '@/components/MapEmbed'
-import Link from 'next/link'
+import { allParams, findGraffiti } from '@/data/graffitis'
+import type { Graffiti } from '@/lib/types'
+
+const PUBLIC_DIR = path.join(process.cwd(), 'public')
+
+function imagesFromDir(dir: string | undefined, fallback: Graffiti['image'], extra?: Graffiti['images']) {
+  if (dir) {
+    const normalized = dir.replace(/^\/+/, '')
+    const dirPath = path.join(PUBLIC_DIR, normalized)
+    try {
+      const files = fs
+        .readdirSync(dirPath, { withFileTypes: true })
+        .filter((entry) => entry.isFile())
+        .map((entry) => entry.name)
+        .filter((name) => /\.(gif|jpe?g|png|webp|avif)$/i.test(name))
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+
+      if (files.length) {
+        const assetBase = normalized.split(path.sep).join('/')
+        return files.map((file) => `/${assetBase}/${file}`)
+      }
+    } catch (error) {
+      console.warn(`No se pudo leer la carpeta de galería "${dir}":`, error)
+    }
+  }
+
+  if (extra && extra.length) return extra
+  return [fallback]
+}
 
 export async function generateStaticParams() {
   return allParams()
@@ -26,7 +56,7 @@ export default function GraffitiDetail({ params }: { params: { city: string; slu
     )
   }
 
-  const gallery = g.images && g.images.length ? g.images : [g.image]
+  const gallery = imagesFromDir(g.galleryDir, g.image, g.images)
 
   return (
     <section className="container-max py-8 space-y-10">
