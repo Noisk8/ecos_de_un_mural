@@ -7,6 +7,7 @@ export const graffitis: Graffiti[] = [
     title: 'Territorio y Vida',
     image: '/medellin/UdeA1.jpg',
     galleryDir: 'medellin/mural-mde1',
+    audio: '/medellin/mural-mde1/mural-mde1.ogg',
     coords: [6.261, -75.565],
     year: 2022,
     tags: ['territorio', 'vida', 'transformación'],

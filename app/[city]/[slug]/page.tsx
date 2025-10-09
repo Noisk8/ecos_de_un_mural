@@ -68,6 +68,7 @@ export default function GraffitiDetail({ params }: { params: { city: string; slu
           <div className="text-xs uppercase text-zinc-400">{g.city} {g.year ? `• ${g.year}` : ''}</div>
           <h1 className="graffiti-title text-4xl">{g.title}</h1>
           <p className="text-zinc-300 leading-relaxed">{g.context}</p>
+       
           {g.author && <p className="text-zinc-400 text-sm">Autoría/Colectivo: <span className="text-white">{g.author}</span></p>}
           <div className="flex flex-wrap gap-2 pt-2">
             {(g.tags ?? []).map((t) => (
@@ -79,7 +80,12 @@ export default function GraffitiDetail({ params }: { params: { city: string; slu
           </div>
         </div>
       </div>
-
+   {g.audio && (
+            <div className="card p-4">
+              <AudioPlayer src={g.audio} title={`Audio — ${g.title}`} />
+              <p className="text-xs text-zinc-400 mt-2">Escucha el relato asociado a este mural.</p>
+            </div>
+          )}
       {g.story && (
         <article className="prose prose-invert max-w-none">
           {g.story.split('\n\n').map((para, i) => (
@@ -94,16 +100,6 @@ export default function GraffitiDetail({ params }: { params: { city: string; slu
           <MediaGallery images={gallery} />
         </div>
       </section>
-
-      {g.audio && (
-        <section className="space-y-4">
-          <h2 className="graffiti-title text-2xl">Audio</h2>
-          <div className="card p-4">
-            <AudioPlayer src={g.audio} title={`Audio — ${g.title}`} />
-            <p className="text-sm text-zinc-400 mt-2">Escucha un testimonio, registro o ambiente del proceso.</p>
-          </div>
-        </section>
-      )}
 
       <div className="card p-2">
         <MapEmbed />
