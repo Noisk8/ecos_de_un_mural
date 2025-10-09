@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
@@ -37,6 +38,21 @@ export default function InteractiveMap({
   bounds?: [[number, number], [number, number]]
   theme?: MapTheme
 }) {
+  // Desplaza ligeramente marcadores que comparten coordenadas para evitar que se solapen
+  const adjustedPoints = useMemo(() => {
+    const seen = new Map<string, number>()
+    const delta = 0.00012
+    return points.map((p) => {
+      const key = `${p.lat.toFixed(6)},${p.lng.toFixed(6)}`
+      const count = seen.get(key) ?? 0
+      seen.set(key, count + 1)
+      if (count === 0) return p
+      const offsetLat = p.lat + delta * count
+      const offsetLng = p.lng + delta * count
+      return { ...p, lat: offsetLat, lng: offsetLng }
+    })
+  }, [points])
+
   const center: [number, number] = points.length
     ? [points[0].lat, points[0].lng]
     : [4.711, -74.072] // Bogotá fallback
@@ -53,7 +69,7 @@ export default function InteractiveMap({
       {bounds ? (
         <MapContainer bounds={bounds} style={{ width: '100%', height: '100%' }}>
           <TileLayer url={tileUrl} />
-          {points.map((p) => (
+          {adjustedPoints.map((p) => (
             <Marker key={p.id} position={[p.lat, p.lng]}>
               <Popup minWidth={320} maxWidth={400}>
                 <div className="space-y-2 max-w-[380px]">
@@ -80,7 +96,7 @@ export default function InteractiveMap({
       ) : (
         <MapContainer center={center} zoom={12} style={{ width: '100%', height: '100%' }}>
           <TileLayer url={tileUrl} />
-          {points.map((p) => (
+          {adjustedPoints.map((p) => (
             <Marker key={p.id} position={[p.lat, p.lng]}>
               <Popup minWidth={320} maxWidth={400}>
                 <div className="space-y-2 max-w-[380px]">
@@ -108,5 +124,4 @@ export default function InteractiveMap({
     </div>
   )
 }
-
 

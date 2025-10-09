@@ -183,11 +183,29 @@ En este repositorio ya hay un ejemplo funcional:
 
 La tarjeta del popup incluye título, miniatura (si existe), descripción breve de Wikidata (si existe) y un enlace a la fuente en Wikidata.
 
+### Caso actual: murales de la Universidad Nacional (Medellín) desde Wikimedia Commons
+
+Para el ejercicio de pruebas se añadieron tres nodos estáticos al mapa con datos tomados de Wikimedia Commons:
+
+- Archivo general del mural principal “Memoria Viva”: [`File:Unalmed_-_Mural_Memoria_Viva.jpg`](https://commons.wikimedia.org/wiki/File:Unalmed_-_Mural_Memoria_Viva.jpg) — coordenadas `6.26123, -75.577675`.
+- Detalle del mismo mural: [`File:Unalmed_-_Mural_Memoria_Viva,_detalle.jpg`](https://commons.wikimedia.org/wiki/File:Unalmed_-_Mural_Memoria_Viva,_detalle.jpg) — mismas coordenadas `6.26123, -75.577675`.
+- Murales en la entrada principal del campus (mayo 2021): [`File:Murales_en_la_entrada_a_la_Universidad_Nacional,_sede_Medellín_-_mayo_de_2021_-_01.jpg`](https://commons.wikimedia.org/wiki/File:Murales_en_la_entrada_a_la_Universidad_Nacional,_sede_Medell%C3%ADn_-_mayo_de_2021_-_01.jpg) — coordenadas `6.259804, -75.579918`.
+
+Los metadatos de cada archivo incluyen la clave `wgCoordinates`. Se consultaron con `curl` y se asignaron directamente en el frontend para asegurar que los marcadores se posicionen en los lugares registrados por las fotografías.
+
+- Los puntos visibles en la tarjeta “Mapa” se configuran en `app/mapa/page.tsx`, donde se arma un arreglo literal de `Point[]` con los campos `id`, `title`, `description`, `lat`, `lng`, `imageUrl` y `sourceUrl`. Los dos objetos de “Memoria Viva” comparten coordenadas; el punto de la entrada pertenece a otro sector del campus.
+- El mapa de pruebas que consume la API (`WikidataEcosystemsMap`) reutiliza los mismos valores en `app/api/wikidata/ecosistemas/route.ts`, que ahora responde `{ points }` con los tres elementos. De esta forma, tanto el mapa principal como el de prueba presentan los mismos marcadores enfocados en la Universidad Nacional.
+- `InteractiveMap` recibe el arreglo de puntos y renderiza cada uno como un `Marker` de React Leaflet. Cuando detecta múltiples puntos con las mismas coordenadas, desplaza ligeramente los duplicados para que no queden solapados (`useMemo` aplica un delta incremental de `0.00012` en latitud y longitud). Además, cuando están presentes `imageUrl` y `sourceUrl`, muestra la miniatura proporcionada por Commons y un enlace directo a la ficha del archivo.
+
+Cuando se requiera incorporar más obras desde Wikimedia Commons, basta con repetir el flujo:
+
+1. Obtener la URL del archivo y consultar sus coordenadas (`wgCoordinates` → `[lat, lng]`).
+2. Añadir un nuevo objeto al arreglo de `Point[]` correspondiente (p. ej., en `app/mapa/page.tsx` o en la respuesta del endpoint que alimente al mapa).
+3. Opcionalmente, incluir `sourceUrl` apuntando al recurso original para mantener la referencia y los créditos adecuados.
+
 ### 5) Consideraciones
 
 - **Rendimiento**: paginación o límites; agrupar puntos por zoom si hay demasiados.
 - **CORS y cuotas**: preferir server-side fetch + caché.
 - **Datos faltantes**: no todos los ítems tienen imagen; manejar `imageUrl` opcional.
 - **Atribución**: incluir créditos a OSM/Carto y a los autores/licencias de Commons.
-
-
