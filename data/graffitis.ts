@@ -20,12 +20,16 @@ export const graffitis: Graffiti[] = [
     city: 'medellin',
     slug: 'mural-ana-fabricia-cordoba',
     title: 'Mural en homenaje a Ana Fabricia Córdoba',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
+    images: [
+      'https://upload.wikimedia.org/wikipedia/commons/9/96/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/9/94/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+    ],
     coords: [6.26861, -75.5692],
     year: 2025,
     tags: ['memoria', 'lideresas', 'victimas'],
     author: 'Colectivos artísticos UdeA',
-    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
     context:
       'Homenaje universitario a Ana Fabricia Córdoba, lideresa desplazada y voz de las víctimas del conflicto armado en Colombia.',
     story:
