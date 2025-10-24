@@ -37,11 +37,11 @@ export default async function MapaPage() {
         <InteractiveMap points={points} bounds={colombiaBounds} />
       </div>
 
-      <section className="space-y-2">
+      {/* <section className="space-y-2">
         <h3 className="graffiti-title text-2xl">Mapa de prueba (Wikidata: ecosistemas)</h3>
         <p className="text-zinc-400">Puntos cargados en vivo desde Wikidata (consulta SPARQL) para ecosistemas en Colombia.</p>
         <WikidataEcosystemsMap />
-      </section>
+      </section> */}
     </section>
   )
 }

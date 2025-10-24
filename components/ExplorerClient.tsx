@@ -1,12 +1,30 @@
-'use client'
+"use client";
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import GraffitiCard from '@/components/GraffitiCard'
 import type { Graffiti } from '@/lib/types'
 
-export default function ExplorerClient({ graffitis }: { graffitis: Graffiti[] }) {
-  const [q, setQ] = useState('')
-  const [city, setCity] = useState<'todas' | 'medellin' | 'bogota'>('todas')
+type CityFilter = 'todas' | 'medellin' | 'bogota'
+
+export default function ExplorerClient({
+  graffitis,
+  initialCity = 'todas',
+  initialQuery = '',
+}: {
+  graffitis: Graffiti[]
+  initialCity?: CityFilter
+  initialQuery?: string
+}) {
+  const [q, setQ] = useState(initialQuery)
+  const [city, setCity] = useState<CityFilter>(initialCity)
+
+  useEffect(() => {
+    setCity(initialCity)
+  }, [initialCity])
+
+  useEffect(() => {
+    setQ(initialQuery)
+  }, [initialQuery])
 
   const list = useMemo(() => {
     const haystack = q.toLowerCase()
