@@ -57,3 +57,4 @@ npm run build
 ## Recursos Wikimedia
 
 - Categoría oficial en Commons para el proyecto: [Category:Ecos de un mural](https://commons.wikimedia.org/wiki/Category:Ecos_de_un_mural). Úsala como punto de partida en consultas SPARQL para filtrar obras relacionadas antes de procesar metadatos en la API interna.
+- Cada archivo nuevo que se suba a la categoría, con coordenadas en Medellín o Bogotá, se sincroniza automáticamente: se mostrará en `/explorar`, `/mapa` y tendrá página propia bajo `/{city}/{slug}` tras la siguiente revalidación (≈15 min).

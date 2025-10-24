@@ -1,6 +1,8 @@
 import { fetchCommonsMurals, commonsFilePath } from '@/lib/commons'
 import { Graffiti } from '@/lib/types'
 
+const CACHE_TTL_MS = 1000 * 60 * 15 // 15 minutos
+
 export const baseGraffitis: Graffiti[] = [
   {
     city: 'medellin',
@@ -106,7 +108,7 @@ export const baseGraffitis: Graffiti[] = [
   },
 ]
 
-let cachedGraffitis: Graffiti[] | null = null
+let graffitisCache: { data: Graffiti[]; timestamp: number } | null = null
 
 const normalizeText = (value?: string) =>
   (value ?? '')
@@ -203,9 +205,11 @@ async function buildGraffitis(): Promise<Graffiti[]> {
 }
 
 export async function getGraffitis(): Promise<Graffiti[]> {
-  if (cachedGraffitis) return cachedGraffitis
+  if (graffitisCache && Date.now() - graffitisCache.timestamp < CACHE_TTL_MS) {
+    return graffitisCache.data
+  }
   const result = await buildGraffitis()
-  cachedGraffitis = result
+  graffitisCache = { data: result, timestamp: Date.now() }
   return result
 }
 
@@ -220,6 +224,7 @@ export async function findGraffiti(city: string, slug: string) {
   return data.find((g) => g.city === city && g.slug === slug)
 }
 
-export function allParams() {
-  return baseGraffitis.map((g) => ({ city: g.city, slug: g.slug }))
+export async function allParams() {
+  const data = await getGraffitis()
+  return data.map((g) => ({ city: g.city, slug: g.slug }))
 }

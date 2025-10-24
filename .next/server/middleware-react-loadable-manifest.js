@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST='{"components/WikidataEcosystemsMap.tsx -> @/components/InteractiveMap":{"id":1076,"files":[]}}';

@@ -9,6 +9,9 @@ import type { Graffiti } from '@/lib/types'
 
 const PUBLIC_DIR = path.join(process.cwd(), 'public')
 
+export const revalidate = 900
+export const dynamicParams = true
+
 function imagesFromDir(dir: string | undefined, fallback: Graffiti['image'], extra?: Graffiti['images']) {
   if (dir) {
     const normalized = dir.replace(/^\/+/, '')
@@ -35,7 +38,7 @@ function imagesFromDir(dir: string | undefined, fallback: Graffiti['image'], ext
 }
 
 export async function generateStaticParams() {
-  return allParams()
+  return await allParams()
 }
 
 export async function generateMetadata({ params }: { params: { city: string; slug: string } }) {

@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/home/noisk8/Documentos/WIKIMEDIA_COL/ECOS DE UN MURAL/ecos_de_un_mural/app/layout\":[\"static/media/c6f9f4935a94000f-s.p.woff2\",\"static/media/a22b1dc24103c00d-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/noisk8/Documentos/WIKIMEDIA_COL/ECOS DE UN MURAL/ecos_de_un_mural/app/layout":["static/media/c6f9f4935a94000f-s.p.woff2","static/media/a22b1dc24103c00d-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
