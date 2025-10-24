@@ -1,11 +1,12 @@
 import dynamic from 'next/dynamic'
-import { graffitis } from '@/data/graffitis'
+import { getGraffitis } from '@/data/graffitis'
 const InteractiveMap = dynamic(() => import('@/components/InteractiveMap'), { ssr: false })
 const WikidataEcosystemsMap = dynamic(() => import('@/components/WikidataEcosystemsMap'), { ssr: false })
 
 export const metadata = { title: 'Mapa | Graffiti y Memoria' }
 
-export default function MapaPage() {
+export default async function MapaPage() {
+  const graffitis = await getGraffitis()
   const points = graffitis.map((g) => {
     const [lat, lng] = g.coords
     const cityLabel = g.city === 'medellin' ? 'Medellín' : 'Bogotá'

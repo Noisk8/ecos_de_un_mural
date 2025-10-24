@@ -13,7 +13,7 @@ export default function NavBar() {
             height={32}
             priority
           />
-          <span className="graffiti-title text-2xl text-white">Murales</span>
+          <span className="graffiti-title text-2xl text-white">Ecos de un Mural</span>
         </Link>
         <div className="flex items-center gap-4 text-sm">
           <Link href="/mapa" className="text-zinc-300 hover:text-white">Mapa</Link>

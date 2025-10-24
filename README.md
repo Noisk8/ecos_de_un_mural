@@ -17,6 +17,7 @@ ecos_de_un_mural/
 │   └── page.tsx
 ├── components/
 │   ├── AudioPlayer.tsx
+│   ├── ExplorerClient.tsx
 │   ├── Footer.tsx
 │   ├── GraffitiCard.tsx
 │   ├── InteractiveMap.tsx
@@ -29,16 +30,14 @@ ecos_de_un_mural/
 ├── docs/
 │   └── Mapa.md
 ├── lib/
+│   ├── commons.ts
 │   └── types.ts
 ├── public/
 │   ├── bogota/
 │   │   ├── 3.jpg
 │   │   └── 4.jpeg
 │   └── medellin/
-│       ├── fondoMDE.jpg
-│       ├── mural-mde1/
-│       ├── UdeA1.jpg
-│       └── UdeA2.jpg
+│       └── fondoMDE.jpg
 ├── Task.md
 ├── next.config.mjs
 ├── package.json
@@ -58,4 +57,3 @@ npm run build
 ## Recursos Wikimedia
 
 - Categoría oficial en Commons para el proyecto: [Category:Ecos de un mural](https://commons.wikimedia.org/wiki/Category:Ecos_de_un_mural). Úsala como punto de partida en consultas SPARQL para filtrar obras relacionadas antes de procesar metadatos en la API interna.
-

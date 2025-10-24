@@ -1,11 +1,12 @@
+import { fetchCommonsMurals, commonsFilePath } from '@/lib/commons'
 import { Graffiti } from '@/lib/types'
 
-export const graffitis: Graffiti[] = [
+export const baseGraffitis: Graffiti[] = [
   {
     city: 'medellin',
     slug: 'mural-juanca-aguledo',
     title: 'Mural en homenaje a Juan Camilo "Juanca" Aguledo',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Mural_en_homenaje_a_Juan_Camilo_%E2%80%9CJuanca%E2%80%9D_Aguledo_05.jpg',
+    image: commonsFilePath('Mural en homenaje a Juan Camilo “Juanca” Aguledo 05.jpg'),
     coords: [6.26825, -75.569924],
     year: 2025,
     tags: ['memoria', 'juventud', 'universidad'],
@@ -20,10 +21,11 @@ export const graffitis: Graffiti[] = [
     city: 'medellin',
     slug: 'mural-ana-fabricia-cordoba',
     title: 'Mural en homenaje a Ana Fabricia Córdoba',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
+    image: commonsFilePath('Mural en homenaje a Ana Fabricia Córdoba 01.jpg'),
     images: [
-      'https://upload.wikimedia.org/wikipedia/commons/9/96/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/9/94/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+      commonsFilePath('Mural en homenaje a Ana Fabricia Córdoba 01.jpg'),
+      commonsFilePath('Mural en homenaje a Ana Fabricia Córdoba 02.jpg'),
+      commonsFilePath('Mural en homenaje a Ana Fabricia Córdoba 03.jpg'),
     ],
     coords: [6.26861, -75.5692],
     year: 2025,
@@ -38,18 +40,42 @@ export const graffitis: Graffiti[] = [
   },
   {
     city: 'medellin',
-    slug: 'graffiti-3',
-    title: 'Cultura y Resistencia',
-    image: '/medellin/UdeA2.jpg',
-    coords: [6.258, -75.572],
-    year: 2023,
-    tags: ['cultura', 'resistencia', 'juventud'],
-    author: 'Red Juvenil MDE',
+    slug: 'mural-paula-magaly',
+    title: 'Mural en homenaje a Paula y Magaly',
+    image: commonsFilePath('Mural en homenaje a Paula y Magaly.jpg'),
+    images: [
+      commonsFilePath('Mural en homenaje a Paula y Magaly.jpg'),
+    ],
+    coords: [6.26592, -75.570078],
+    year: 2025,
+    tags: ['memoria', 'universidad', 'resistencia'],
+    author: 'Colectivos estudiantiles y de memoria UdeA',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Paula_y_Magaly.jpg',
     context:
-      'Expresión artística que manifiesta la resistencia cultural de los jóvenes ante las dinámicas de violencia y exclusión social.',
+      'Mural ubicado en el Bloque 9 de la Universidad de Antioquia (Medellín) que honra la memoria de Paula y Magaly, estudiantes víctimas de la violencia sociopolítica.',
     story:
-      'Obra colectiva realizada por un grupo de jóvenes artistas locales durante un proceso de formación en técnicas de muralismo.\n\nEl mural incorpora símbolos de la cultura popular urbana y se ha convertido en punto de encuentro para actividades culturales del barrio.',
+      'La pieza, realizada por colectivos estudiantiles y de memoria, busca mantener presente la vida de Paula y Magaly y reforzar el compromiso del movimiento universitario con la justicia, la no repetición y la defensa de la vida.\n\nEl registro fotográfico fue elaborado para Wikimedia Commons y forma parte del archivo colaborativo Ecos de un Mural.',
   },
+  {
+    city: 'medellin',
+    slug: 'mural-yo-di-la-orden',
+    title: 'Mural “Yo di la orden”',
+    image: commonsFilePath('Mural “Yo di la orden”, Universidad de Antioquia 01.jpg'),
+    images: [
+      commonsFilePath('Mural “Yo di la orden”, Universidad de Antioquia 01.jpg'),
+      commonsFilePath('Mural “Yo di la orden”, Universidad de Antioquia 02.jpg'),
+    ],
+    coords: [6.2685, -75.5676],
+    year: 2025,
+    tags: ['memoria', 'falsos_positivos', 'denuncia'],
+    author: 'Colectivos estudiantiles UdeA',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_%E2%80%9CYo_di_la_orden%E2%80%9D,_Universidad_de_Antioquia_01.jpg',
+    context:
+      'Mural del Bloque 24 de la Universidad de Antioquia inspirado en la consigna “¿Quién dio la orden?”, que denuncia la responsabilidad de altos mandos en los falsos positivos.',
+    story:
+      'La composición reinterpreta la consigna como “Yo di la orden” y exhibe la figura de un militar sobre un fondo de calaveras, como crítica directa a los crímenes de Estado. Fue documentado para Wikimedia Commons dentro del proyecto Ecos de un Mural.',
+  },
+
   {
     city: 'bogota',
     slug: 'graffiti-2',
@@ -80,15 +106,120 @@ export const graffitis: Graffiti[] = [
   },
 ]
 
-export function byCity(city?: string) {
-  if (!city) return graffitis
-  return graffitis.filter((g) => g.city === city)
+let cachedGraffitis: Graffiti[] | null = null
+
+const normalizeText = (value?: string) =>
+  (value ?? '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+
+const stringsOverlap = (a?: string, b?: string) => {
+  const an = normalizeText(a)
+  const bn = normalizeText(b)
+  if (!an || !bn) return false
+  return an.includes(bn) || bn.includes(an)
 }
 
-export function findGraffiti(city: string, slug: string) {
-  return graffitis.find((g) => g.city === city && g.slug === slug)
+function cloneGraffiti(g: Graffiti): Graffiti {
+  return {
+    ...g,
+    coords: [...g.coords],
+    tags: g.tags ? [...g.tags] : undefined,
+    images: g.images ? [...g.images] : undefined,
+  }
+}
+
+function mergeUnique(base: string[] = [], extras: (string | undefined)[] = []): string[] {
+  const result: string[] = [...base]
+  const seen = new Set(result)
+  for (const item of extras) {
+    if (!item) continue
+    if (!seen.has(item)) {
+      seen.add(item)
+      result.push(item)
+    }
+  }
+  return result
+}
+
+async function buildGraffitis(): Promise<Graffiti[]> {
+  const combined = baseGraffitis.map(cloneGraffiti)
+  try {
+    const commonsMurals = await fetchCommonsMurals()
+    for (const mural of commonsMurals) {
+      const remoteCover = mural.images[0]?.thumbUrl ?? mural.images[0]?.url
+      const remoteImages = mural.images.map((img) => img.url ?? img.thumbUrl)
+
+      const match = combined.find((g) => {
+        if (g.city !== mural.city) return false
+        const sourceMatch = g.sourceUrl
+          ? mural.sourceUrl === g.sourceUrl || mural.images.some((img) => img.sourceUrl === g.sourceUrl)
+          : false
+        const slugMatch = stringsOverlap(g.slug, mural.slug)
+        const titleMatch = stringsOverlap(g.title, mural.title)
+        return sourceMatch || slugMatch || titleMatch
+      })
+
+      if (match) {
+        match.images = mergeUnique(match.images, remoteImages)
+        if ((!match.image || match.image.startsWith('/')) && remoteCover) {
+          match.image = remoteCover
+        }
+        if (!match.sourceUrl && mural.sourceUrl) {
+          match.sourceUrl = mural.sourceUrl
+        }
+        if (!match.author && mural.credit) {
+          match.author = mural.credit
+        }
+        if (!match.story && mural.description) {
+          match.story = mural.description
+        }
+      } else if (remoteCover) {
+        combined.push({
+          city: mural.city,
+          slug: mural.slug,
+          title: mural.title,
+          image: remoteCover,
+          images: remoteImages,
+          galleryDir: undefined,
+          audio: undefined,
+          coords: mural.coords,
+          year: undefined,
+          tags: ['commons'],
+          sourceUrl: mural.sourceUrl,
+          context: mural.description ?? 'Registro desde Wikimedia Commons.',
+          story: mural.description,
+          author: mural.credit,
+        })
+      }
+    }
+  } catch (error) {
+    console.error('No se pudo sincronizar con Wikimedia Commons:', error)
+  }
+  return combined
+}
+
+export async function getGraffitis(): Promise<Graffiti[]> {
+  if (cachedGraffitis) return cachedGraffitis
+  const result = await buildGraffitis()
+  cachedGraffitis = result
+  return result
+}
+
+export async function byCity(city?: string) {
+  const data = await getGraffitis()
+  if (!city) return data
+  return data.filter((g) => g.city === city)
+}
+
+export async function findGraffiti(city: string, slug: string) {
+  const data = await getGraffitis()
+  return data.find((g) => g.city === city && g.slug === slug)
 }
 
 export function allParams() {
-  return graffitis.map((g) => ({ city: g.city, slug: g.slug }))
+  return baseGraffitis.map((g) => ({ city: g.city, slug: g.slug }))
 }

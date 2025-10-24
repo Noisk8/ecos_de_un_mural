@@ -39,15 +39,15 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: { city: string; slug: string } }) {
-  const g = findGraffiti(params.city, params.slug)
+  const g = await findGraffiti(params.city, params.slug)
   return {
     title: g ? `${g.title} | ${g.city} | Graffiti y Memoria` : 'Graffiti | Detalle',
     description: g?.context ?? 'Detalle de graffiti',
   }
 }
 
-export default function GraffitiDetail({ params }: { params: { city: string; slug: string } }) {
-  const g = findGraffiti(params.city, params.slug)
+export default async function GraffitiDetail({ params }: { params: { city: string; slug: string } }) {
+  const g = await findGraffiti(params.city, params.slug)
   if (!g) {
     return (
       <section className="container-max py-10">

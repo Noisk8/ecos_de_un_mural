@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { graffitis } from '@/data/graffitis'
+import { getGraffitis } from '@/data/graffitis'
 import GraffitiCard from '@/components/GraffitiCard'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const graffitis = await getGraffitis()
   return (
     <section className="container-max py-10">
       <header className="text-center space-y-4 relative">
         <h1 className="graffiti-title text-5xl md:text-7xl text-neon">Ecos de un Mural</h1>
-        <h2 className='text-2xl text-neon text-bold'>Colaboraotio de memoria historica</h2>
+        <h2 className='text-2xl text-neon text-bold'>Colaboratorio de memoria historica</h2>
         <p className="text-zinc-300 max-w-2xl mx-auto">
       Este proyecto busca visualizar las obras de arte urbano de las ciudades de colombia donde los artistas han dejado un legado para la memoria gistorica del pais
       </p>
