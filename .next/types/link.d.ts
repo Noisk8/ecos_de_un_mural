@@ -31,8 +31,8 @@ declare namespace __next_route_internal_types__ {
   type StaticRoutes = 
     | `/`
     | `/api/wikidata/ecosistemas`
-    | `/explorar`
     | `/escena-3d`
+    | `/explorar`
     | `/mapa`
   type DynamicRoutes<T extends string = string> = 
     | `/${SafeSlug<T>}/${SafeSlug<T>}`

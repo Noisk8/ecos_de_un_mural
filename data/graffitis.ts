@@ -30,6 +30,7 @@ export const graffitis: Graffiti[] = [
     tags: ['memoria', 'lideresas', 'victimas'],
     author: 'Colectivos artísticos UdeA',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_01.jpg',
+    audio: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Ana_Fabricia_C%C3%B3rdoba_Mural_Audio.mp3',
     context:
       'Homenaje universitario a Ana Fabricia Córdoba, lideresa desplazada y voz de las víctimas del conflicto armado en Colombia.',
     story:
