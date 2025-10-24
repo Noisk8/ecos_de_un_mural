@@ -1,43 +1,26 @@
 import dynamic from 'next/dynamic'
+import { graffitis } from '@/data/graffitis'
 const InteractiveMap = dynamic(() => import('@/components/InteractiveMap'), { ssr: false })
 const WikidataEcosystemsMap = dynamic(() => import('@/components/WikidataEcosystemsMap'), { ssr: false })
 
 export const metadata = { title: 'Mapa | Graffiti y Memoria' }
 
 export default function MapaPage() {
-  const points = [
-    {
-      id: 'memoria-viva',
-      title: 'Memoria Viva — Universidad Nacional de Colombia (Medellín)',
-      description:
-        'Mural registrado en Wikimedia Commons. Forma parte de la Universidad Nacional de Colombia, sede Medellín.',
-      lat: 6.26123,
-      lng: -75.577675,
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e6/Unalmed_-_Mural_Memoria_Viva.jpg',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Unalmed_-_Mural_Memoria_Viva.jpg',
-    },
-    {
-      id: 'memoria-viva-detalle',
-      title: 'Memoria Viva (detalle) — Universidad Nacional de Colombia',
-      description:
-        'Detalle del mural “Memoria Viva” capturado para Wikimedia Commons. Resalta los elementos simbólicos de la obra.',
-      lat: 6.26123,
-      lng: -75.577675,
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Unalmed_-_Mural_Memoria_Viva%2C_detalle.jpg',
-      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Unalmed_-_Mural_Memoria_Viva,_detalle.jpg',
-    },
-    {
-      id: 'murales-entrada-unal-2021-01',
-      title: 'Murales en la entrada — Universidad Nacional Medellín (2021)',
-      description:
-        'Registro fotográfico de los murales ubicados en la entrada principal de la Universidad Nacional de Colombia, sede Medellín.',
-      lat: 6.259804,
-      lng: -75.579918,
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Murales_en_la_entrada_a_la_Universidad_Nacional%2C_sede_Medell%C3%ADn_-_mayo_de_2021_-_01.jpg',
-      sourceUrl:
-        'https://commons.wikimedia.org/wiki/File:Murales_en_la_entrada_a_la_Universidad_Nacional,_sede_Medell%C3%ADn_-_mayo_de_2021_-_01.jpg',
-    },
-  ]
+  const points = graffitis.map((g) => {
+    const [lat, lng] = g.coords
+    const cityLabel = g.city === 'medellin' ? 'Medellín' : 'Bogotá'
+    return {
+      id: `${g.city}-${g.slug}`,
+      title: `${g.title} — ${cityLabel}`,
+      description: g.context,
+      lat,
+      lng,
+      city: g.city,
+      slug: g.slug,
+      imageUrl: g.image,
+      sourceUrl: g.sourceUrl,
+    }
+  })
   // Colombia approximate bounds: [southWest, northEast]
   const colombiaBounds: [[number, number], [number, number]] = [
     [ -4.5, -79.1 ], // SW

@@ -102,7 +102,7 @@ export default function GraffitiDetail({ params }: { params: { city: string; slu
       </section>
 
       <div className="card p-2">
-        <MapEmbed />
+        <MapEmbed coords={g.coords} />
       </div>
     </section>
   )

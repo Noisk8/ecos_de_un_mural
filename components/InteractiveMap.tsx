@@ -13,6 +13,7 @@ type Point = {
   city?: string
   slug?: string
   imageUrl?: string
+  sourceUrl?: string
 }
 
 // Set Leaflet default marker icon globally to avoid passing `icon` per Marker
@@ -84,8 +85,8 @@ export default function InteractiveMap({
                     {p.city && p.slug ? (
                       <a className="text-blue-400 underline" href={`/${p.city}/${p.slug}`}>Ver detalle</a>
                     ) : null}
-                    {'sourceUrl' in p && (p as any).sourceUrl ? (
-                      <a className="text-blue-400 underline" href={(p as any).sourceUrl} target="_blank" rel="noreferrer">Fuente: Wikidata</a>
+                    {p.sourceUrl ? (
+                      <a className="text-blue-400 underline" href={p.sourceUrl} target="_blank" rel="noreferrer">Fuente</a>
                     ) : null}
                   </div>
                 </div>
@@ -111,8 +112,8 @@ export default function InteractiveMap({
                     {p.city && p.slug ? (
                       <a className="text-blue-400 underline" href={`/${p.city}/${p.slug}`}>Ver detalle</a>
                     ) : null}
-                    {'sourceUrl' in p && (p as any).sourceUrl ? (
-                      <a className="text-blue-400 underline" href={(p as any).sourceUrl} target="_blank" rel="noreferrer">Fuente: Wikidata</a>
+                    {p.sourceUrl ? (
+                      <a className="text-blue-400 underline" href={p.sourceUrl} target="_blank" rel="noreferrer">Fuente</a>
                     ) : null}
                   </div>
                 </div>
@@ -124,4 +125,3 @@ export default function InteractiveMap({
     </div>
   )
 }
-

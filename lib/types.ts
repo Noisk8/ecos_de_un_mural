@@ -9,6 +9,7 @@ export type Graffiti = {
   coords: [number, number];// [lat, lng]
   year?: number;
   tags?: string[];
+  sourceUrl?: string;      // referencia externa (ej. Wikimedia Commons)
   context: string;         // breve
   story?: string;          // largo
   author?: string;

@@ -3,19 +3,33 @@ import { Graffiti } from '@/lib/types'
 export const graffitis: Graffiti[] = [
   {
     city: 'medellin',
-    slug: 'graffiti-2',
-    title: 'Territorio y Vida',
-    image: '/medellin/UdeA1.jpg',
-    galleryDir: 'medellin/mural-mde1',
-    audio: '/medellin/mural-mde1/mural-mde1.ogg',
-    coords: [6.261, -75.565],
-    year: 2022,
-    tags: ['territorio', 'vida', 'transformación'],
-    author: 'Colectivo Territorio',
+    slug: 'mural-juanca-aguledo',
+    title: 'Mural en homenaje a Juan Camilo "Juanca" Aguledo',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Mural_en_homenaje_a_Juan_Camilo_%E2%80%9CJuanca%E2%80%9D_Aguledo_05.jpg',
+    coords: [6.26825, -75.569924],
+    year: 2025,
+    tags: ['memoria', 'juventud', 'universidad'],
+    author: 'Comunidad universitaria UdeA',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Juan_Camilo_%E2%80%9CJuanca%E2%80%9D_Aguledo_05.jpg',
     context:
-      'Obra que celebra la transformación social del territorio a través del arte comunitario y la memoria colectiva.',
+      'Mural universitario que mantiene viva la memoria de Juan Camilo "Juanca" Aguledo, estudiante y activista de la Universidad de Antioquia.',
     story:
-      'Este mural fue creado en colaboración con jóvenes del barrio que participaron en talleres de arte urbano y narración oral.\n\nLa pieza refleja los procesos de cambio social y la apropiación positiva del territorio por parte de sus habitantes.',
+      'Este mural se ubica en un muro exterior del campus de la Universidad de Antioquia, cerca del Bloque 24. La comunidad lo conserva como homenaje a la labor de Juanca por los derechos estudiantiles y la memoria histórica.\n\nEl registro fotográfico fue realizado para Wikimedia Commons en 2025, con la intención de documentar las expresiones de memoria y resistencia cultural dentro de la universidad.',
+  },
+  {
+    city: 'medellin',
+    slug: 'mural-ana-fabricia-cordoba',
+    title: 'Mural en homenaje a Ana Fabricia Córdoba',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+    coords: [6.26861, -75.5692],
+    year: 2025,
+    tags: ['memoria', 'lideresas', 'victimas'],
+    author: 'Colectivos artísticos UdeA',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mural_en_homenaje_a_Ana_Fabricia_C%C3%B3rdoba_03.jpg',
+    context:
+      'Homenaje universitario a Ana Fabricia Córdoba, lideresa desplazada y voz de las víctimas del conflicto armado en Colombia.',
+    story:
+      'La pieza se encuentra en el Bloque 24 de la Universidad de Antioquia, en Medellín. Fue creada por colectivos estudiantiles para mantener viva la memoria de Ana Fabricia y denunciar las violencias que enfrentó como lideresa comunitaria.\n\nEl registro fotográfico de 2025 documenta el mural como parte de las acciones de memoria y resistencia cultural dentro de la universidad.',
   },
   {
     city: 'medellin',
