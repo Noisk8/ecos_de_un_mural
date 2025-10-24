@@ -1,4 +1,4 @@
-// File: /home/noisk8/Documentos/graffiti_y_memoria/app/layout.tsx
+// File: /home/noisk8/Documentos/WIKIMEDIA_COL/ECOS DE UN MURAL/ecos_de_un_mural/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

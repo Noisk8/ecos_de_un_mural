@@ -8,8 +8,8 @@ const urbanist = Urbanist({ subsets: ['latin'], variable: '--font-sans' })
 const bangers = Bangers({ weight: '400', subsets: ['latin'], variable: '--font-graffiti' })
 
 export const metadata: Metadata = {
-  title: 'Muros de Memoria',
-  description: 'Archivo vivo de graffiti urbano y sus contextos socio-políticos en Colombia.',
+  title: 'Ecos de un Mural',
+  description: 'Memorias de  los murales.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

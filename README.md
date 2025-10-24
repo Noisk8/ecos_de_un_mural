@@ -1,13 +1,61 @@
-# graffiti_y_memoria
+# Ecos de un mural
 
-Descripcion del proyecto 
+Memorial digital colaborativo que documenta murales y expresiones de arte urbano en Colombia utilizando el ecosistema Wikimedia (Commons + Wikidata) como base de conocimiento.
 
-~~~
+## Árbol del proyecto
+
+```
+ecos_de_un_mural/
+├── app/
+│   ├── [city]/[slug]/page.tsx
+│   ├── api/wikidata/ecosistemas/route.ts
+│   ├── escena-3d/page.tsx
+│   ├── explorar/page.tsx
+│   ├── mapa/page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── AudioPlayer.tsx
+│   ├── Footer.tsx
+│   ├── GraffitiCard.tsx
+│   ├── InteractiveMap.tsx
+│   ├── MapEmbed.tsx
+│   ├── MediaGallery.tsx
+│   ├── NavBar.tsx
+│   └── WikidataEcosystemsMap.tsx
+├── data/
+│   └── graffitis.ts
+├── docs/
+│   └── Mapa.md
+├── lib/
+│   └── types.ts
+├── public/
+│   ├── bogota/
+│   │   ├── 3.jpg
+│   │   └── 4.jpeg
+│   └── medellin/
+│       ├── fondoMDE.jpg
+│       ├── mural-mde1/
+│       ├── UdeA1.jpg
+│       └── UdeA2.jpg
+├── Task.md
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+## Scripts disponibles
+
+```bash
 npm i
-
 npm run dev
+npm run build
+```
 
-npm run build 
-~~~
+## Recursos Wikimedia
 
+- Categoría oficial en Commons para el proyecto: [Category:Ecos de un mural](https://commons.wikimedia.org/wiki/Category:Ecos_de_un_mural). Úsala como punto de partida en consultas SPARQL para filtrar obras relacionadas antes de procesar metadatos en la API interna.
 
